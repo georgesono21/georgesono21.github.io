@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="theme-dark">
+<body class="theme-dark palette-nutanix">
   <header class="top-nav" id="top">
     <div class="nav-inner">
       <div class="brand">
@@ -40,18 +40,16 @@
       <h1>
         <span class="hero-headline" data-headlines='["Designing resilient services that keep data flowing and users connected.", "Building backend systems that engineers love to scale."]'>Designing resilient services that keep data flowing and users connected.</span>
       </h1>
-      <p class="lead">
-        I am a software engineer at Visa specializing in high-throughput authorization services,
-        automation tooling, and data-intensive systems. I thrive at the intersection of
-        reliability, security, and delightful developer experiences—and I never turn down a good hackathon challenge.
-      </p>
-      <div class="hero-actions">
-        <a class="secondary" href="#experience">Explore Experience</a>
-        <a class="secondary" href="#projects">Explore Projects</a>
-        <a class="secondary" href="#skills">Explore Skills</a>
-        <a class="secondary" href="#education">Explore Education</a>
-        <a class="secondary" href="#beyond">Explore Beyond Work</a>
-        <a class="primary" href="#contact">Contact</a>
+      <div class="hero-intro">
+        <p class="lead">Hello! I’m George, a Taiwanese American engineer raised in Japan and a UC Santa Cruz CS grad. I’m a Member of Technical Staff 1 at Nutanix, focused on AHV control-plane reliability and distributed systems that keep private clouds stable. In my free time I recharge through snowboarding, weightlifting, and cooking.</p>
+        <div class="hero-actions">
+          <a class="secondary" href="#experience">Explore Experience</a>
+          <a class="secondary" href="#projects">Explore Projects</a>
+          <a class="secondary" href="#skills">Explore Skills</a>
+          <a class="secondary" href="#education">Explore Education</a>
+          <a class="secondary" href="#beyond">Explore Beyond Work</a>
+          <a class="primary" href="#contact">Contact</a>
+        </div>
       </div>
       <ul class="hero-highlights">
         <li><span>50k+</span> transactions/second safeguarded</li>
@@ -79,11 +77,30 @@
         <article class="timeline-card">
           <header>
             <div>
+              <h3>Nutanix</h3>
+              <p class="role">Member of Technical Staff 1 · AHV Hypervisor</p>
+            </div>
+            <div class="meta">
+              <time>Jan 2026 – Present</time>
+              <span>San Jose, CA</span>
+            </div>
+          </header>
+          <ul>
+            <li>Own AHV control plane services that coordinate VM lifecycle events—create, clone, power, migrate—for thousands of enterprise tenants.</li>
+            <li>Extend lifecycle state machines with C/C++ and Go guardrails plus OpenTelemetry tracepoints so on-call engineers can root-cause regressions quickly.</li>
+            <li>Automate remediation workflows that reconcile stuck lifecycle tasks, patch control plane nodes, and maintain compliance baselines.</li>
+            <li>Partner with compute, storage, and networking teams to model lifecycle SLAs and design rollout playbooks that keep upgrades predictable.</li>
+          </ul>
+        </article>
+
+        <article class="timeline-card">
+          <header>
+            <div>
               <h3>Visa Inc.</h3>
               <p class="role">Software Engineer · Payment Products Development</p>
             </div>
             <div class="meta">
-              <time>Jun 2025 – Present</time>
+              <time>Jun 2025 – Dec 2025</time>
               <span>Foster City, CA</span>
             </div>
           </header>
@@ -162,7 +179,27 @@
       <div class="project-grid">
         <article class="project-card">
           <header>
-            <h3>StimStudy</h3>
+            <div class="project-heading">
+              <h3>StimStudy</h3>
+              <div class="project-links" aria-label="StimStudy links">
+                <a class="icon-link" href="https://github.com/hgupta1703/stimstudy_frontend" target="_blank" rel="noreferrer" aria-label="StimStudy frontend on GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
+                  </svg>
+                </a>
+                <a class="icon-link" href="https://github.com/georgesono21/stimstudy_backend" target="_blank" rel="noreferrer" aria-label="StimStudy backend on GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
+                  </svg>
+                </a>
+                <a class="icon-link" href="https://devpost.com/software/stimstudy?_gl=1*xhg7gl*_gcl_au*MTUyOTcxNzg3Mi4xNzY3NjgxODI3*_ga*MjExNDQyNzI1My4xNzY3NjgxODI3*_ga_0YHJK3Y10M*czE3Njc2ODE4MjckbzEkZzAkdDE3Njc2ODE4MjckajYwJGwwJGgw" target="_blank" rel="noreferrer" aria-label="StimStudy on Devpost">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 4.5h12.9a5.6 5.6 0 0 1 0 11.2H8.6V19.5H3zm5.6 8.2h7.3a2.6 2.6 0 0 0 0-5.2H8.6z"/>
+                    <path d="M19.2 9.5H21a.5.5 0 0 1 .5.5v4.3a5.7 5.7 0 0 1-5.6 5.7H9.2a.5.5 0 0 1-.5-.5v-1.8h7.7a3.7 3.7 0 0 0 3.6-3.7z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
             <p class="project-meta">AI Study Platform · April 2025<br><span class="project-award">2025 CruzHacks Education Hacks Winner</span></p>
           </header>
           <p class="project-summary">
@@ -178,7 +215,16 @@
 
         <article class="project-card">
           <header>
-            <h3>PDFPal</h3>
+            <div class="project-heading">
+              <h3>PDFPal</h3>
+              <div class="project-links" aria-label="PDFPal links">
+                <a class="icon-link" href="https://github.com/georgesono21/PDFPal" target="_blank" rel="noreferrer" aria-label="PDFPal on GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
             <p class="project-meta">PDF Chatbot · October 2023</p>
           </header>
           <p class="project-summary">
@@ -195,7 +241,16 @@
 
         <article class="project-card">
           <header>
-            <h3>CrateTime</h3>
+            <div class="project-heading">
+              <h3>CrateTime</h3>
+              <div class="project-links" aria-label="CrateTime links">
+                <a class="icon-link" href="https://github.com/georgesono21/CrateTime" target="_blank" rel="noreferrer" aria-label="CrateTime on GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
             <p class="project-meta">Pet Care Platform · June 2024</p>
           </header>
           <p class="project-summary">
@@ -211,7 +266,16 @@
 
         <article class="project-card">
           <header>
-            <h3>TaskManager</h3>
+            <div class="project-heading">
+              <h3>TaskManager</h3>
+              <div class="project-links" aria-label="TaskManager links">
+                <a class="icon-link" href="https://github.com/georgesono21/taskmanager" target="_blank" rel="noreferrer" aria-label="TaskManager on GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
             <p class="project-meta">Productivity App · May 2024</p>
           </header>
           <p class="project-summary">
@@ -224,6 +288,32 @@
             <span role="listitem">Data Viz</span>
           </div>
         </article>
+
+        <article class="project-card">
+          <header>
+            <div class="project-heading">
+              <h3>AI Pacman Agents</h3>
+              <div class="project-links" aria-label="AI Pacman links">
+                <a class="icon-link" href="https://github.com/georgesono21/ai-pacman" target="_blank" rel="noreferrer" aria-label="AI Pacman on GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352.5 12 .5Z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-meta">AI Search &amp; Games · 2023</p>
+          </header>
+          <p class="project-summary">
+            Implemented multi-agent search strategies—including minimax, expectimax, and ghost avoidance—for the UC Berkeley Pacman framework, emphasizing heuristics and performance profiling.
+          </p>
+          <div class="project-tags" role="list">
+            <span role="listitem">Python</span>
+            <span role="listitem">AI</span>
+            <span role="listitem">Adversarial Search</span>
+            <span role="listitem">Heuristics</span>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -251,6 +341,7 @@
             <li>Node.js</li>
             <li>Express</li>
             <li>Flask</li>
+            <li>gRPC</li>
             <li>PostgreSQL</li>
             <li>MySQL</li>
             <li>MongoDB</li>
@@ -411,6 +502,15 @@
     const nav = document.getElementById('primary-navigation');
     const headlineEl = document.querySelector('.hero-headline');
     const homeLinks = document.querySelectorAll('a[href="#home"]');
+    const paletteClasses = ['palette-nutanix', 'palette-aurora', 'palette-horizon'];
+
+    const applyRandomPalette = () => {
+      const nextPalette = paletteClasses[Math.floor(Math.random() * paletteClasses.length)];
+      bodyElement.classList.remove(...paletteClasses);
+      bodyElement.classList.add(nextPalette);
+    };
+
+    applyRandomPalette();
 
     const setHomeHash = (behavior = 'auto') => {
       history.replaceState(null, '', '/#home');
@@ -505,6 +605,7 @@
         setHomeHash('smooth');
       });
     });
+
   </script>
 </body>
 </html>
