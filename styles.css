@@ -125,7 +125,7 @@ body {
   background-position: 50% var(--scroll-shift);
   background-size: 220% 220%;
   color: var(--text);
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Sora', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 1.55rem;
   line-height: 1.6;
   letter-spacing: 0.01em;
@@ -341,23 +341,36 @@ main {
 }
 
 h1 {
-  font-size: clamp(3.8rem, 7vw, 7.2rem);
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: clamp(3rem, 4.8vw, 5.4rem);
+  font-family: 'Space Grotesk', 'Sora', 'Inter', sans-serif;
   font-weight: 600;
-  margin: 0 0 1.8rem;
-  line-height: 1.15;
+  margin: 0 0 1rem;
+  line-height: 1.1;
 }
 
 .hero-headline {
-  display: inline-block;
-  max-width: 24ch;
-  min-height: 3.6em;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: block;
+  width: min(34ch, 100%);
+  min-height: 5.2em;
+  height: 5.2em;
+  font-family: 'IBM Plex Mono', 'Space Grotesk', 'Sora', sans-serif;
+  font-size: clamp(1.02em, 1.08em + 0.3vw, 1.24em);
+  letter-spacing: 0.03em;
+  position: relative;
+  padding-right: 1rem;
+  overflow: hidden;
+  line-height: 1.28;
 }
 
-.hero-headline.fade-out {
-  opacity: 0;
-  transform: translateY(6px);
+.hero-headline::after {
+  content: '';
+  display: inline-block;
+  margin-left: 0.4rem;
+  width: 2px;
+  height: 1.2em;
+  background: var(--accent);
+  animation: caretBlink 1s steps(1) infinite;
+  vertical-align: text-bottom;
 }
 
 .lead {
@@ -537,6 +550,16 @@ body.theme-light .primary {
   100% {
     transform: translateY(0);
     box-shadow: var(--shadow);
+  }
+}
+
+@keyframes caretBlink {
+  0%, 49% {
+    opacity: 1;
+  }
+
+  50%, 100% {
+    opacity: 0;
   }
 }
 

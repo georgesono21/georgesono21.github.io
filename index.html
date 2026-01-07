@@ -7,7 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' ry='14' fill='%23040B1C'/%3E%3Ctext x='50%' y='52%' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='28' fill='%23FFFFFF' font-weight='600'%3EYS%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600&family=Sora:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="theme-dark palette-nutanix">
@@ -564,20 +564,41 @@
     if (headlineEl) {
       try {
         const headlines = JSON.parse(headlineEl.dataset.headlines);
-        let index = 0;
+        let headlineIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingDelay = 85;
+        const pauseDelay = 1800;
 
-        const rotateHeadline = () => {
-          index = (index + 1) % headlines.length;
-          headlineEl.classList.add('fade-out');
-          setTimeout(() => {
-            headlineEl.textContent = headlines[index];
-            headlineEl.classList.remove('fade-out');
-          }, 200);
+        const typeLoop = () => {
+          const current = headlines[headlineIndex] || '';
+
+          if (!isDeleting) {
+            charIndex = Math.min(charIndex + 1, current.length);
+            headlineEl.textContent = current.slice(0, charIndex);
+
+            if (charIndex === current.length) {
+              isDeleting = true;
+              setTimeout(typeLoop, pauseDelay);
+              return;
+            }
+          } else {
+            charIndex = Math.max(charIndex - 1, 0);
+            headlineEl.textContent = current.slice(0, charIndex);
+
+            if (charIndex === 0) {
+              isDeleting = false;
+              headlineIndex = (headlineIndex + 1) % headlines.length;
+            }
+          }
+
+          const nextDelay = isDeleting ? typingDelay * 0.6 : typingDelay;
+          setTimeout(typeLoop, nextDelay);
         };
 
-        setInterval(rotateHeadline, 5000);
+        typeLoop();
       } catch (error) {
-        console.error('Failed to initialize rotating headlines', error);
+        console.error('Failed to initialize typewriter headlines', error);
       }
     }
 
