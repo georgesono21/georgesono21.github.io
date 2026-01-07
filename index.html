@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yoshinobu Sono · Software Engineer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' ry='14' fill='%23040B1C'/%3E%3Ctext x='50%' y='52%' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='28' fill='%23FFFFFF' font-weight='600'%3EYS%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="theme-dark palette-nutanix">
+  <canvas id="constellation" aria-hidden="true"></canvas>
   <header class="top-nav" id="top">
     <div class="nav-inner">
       <div class="brand">
@@ -41,7 +43,7 @@
         <span class="hero-headline" data-headlines='["Designing resilient services that keep data flowing and users connected.", "Building backend systems that engineers love to scale."]'>Designing resilient services that keep data flowing and users connected.</span>
       </h1>
       <div class="hero-intro">
-        <p class="lead">Hello! I’m George, a Taiwanese American engineer raised in Japan and a UC Santa Cruz CS grad. I’m a Member of Technical Staff 1 at Nutanix, focused on AHV control-plane reliability and distributed systems that keep private clouds stable. In my free time I recharge through snowboarding, weightlifting, and cooking.</p>
+        <p class="lead">Hello! I’m Yoshinobu (George) Sono—a Taiwanese American engineer raised in Japan and a UC Santa Cruz CS grad. I’m a Member of Technical Staff 1 at Nutanix, focused on AHV control-plane reliability and distributed systems that keep private clouds stable. In my free time I recharge through snowboarding, weightlifting, and cooking.</p>
         <div class="hero-actions">
           <a class="secondary" href="#experience">Explore Experience</a>
           <a class="secondary" href="#projects">Explore Projects</a>
@@ -78,19 +80,13 @@
           <header>
             <div>
               <h3>Nutanix</h3>
-              <p class="role">Member of Technical Staff 1 · AHV Hypervisor</p>
+              <p class="role">Member of Technical Staff 1 · AHV Control Plane</p>
             </div>
             <div class="meta">
-              <time>Jan 2026 – Present</time>
+              <time>Nov 2025 – Present</time>
               <span>San Jose, CA</span>
             </div>
           </header>
-          <ul>
-            <li>Own AHV control plane services that coordinate VM lifecycle events—create, clone, power, migrate—for thousands of enterprise tenants.</li>
-            <li>Extend lifecycle state machines with C/C++ and Go guardrails plus OpenTelemetry tracepoints so on-call engineers can root-cause regressions quickly.</li>
-            <li>Automate remediation workflows that reconcile stuck lifecycle tasks, patch control plane nodes, and maintain compliance baselines.</li>
-            <li>Partner with compute, storage, and networking teams to model lifecycle SLAs and design rollout playbooks that keep upgrades predictable.</li>
-          </ul>
         </article>
 
         <article class="timeline-card">
@@ -100,7 +96,7 @@
               <p class="role">Software Engineer · Payment Products Development</p>
             </div>
             <div class="meta">
-              <time>Jun 2025 – Dec 2025</time>
+              <time>Jun 2025 – Nov 2025</time>
               <span>Foster City, CA</span>
             </div>
           </header>
@@ -108,7 +104,7 @@
             <li>Engineer on the Visa Integrated Payments (VIP) team delivering authorization services for 50,000+ transactions every second and 150+ billion annually.</li>
             <li>Designed an AI-driven automation agent to identify and retire 100+ dormant feature toggles, eliminating configuration drift and reducing technical debt.</li>
             <li>Strengthened fraud defenses by contributing to Real-Time Attack Mitigation (RAM) with C++ and z/TPF Assembly safeguards that protect millions of daily transactions.</li>
-            <li>Resolved high-priority incidents and led on-call rotations for the Visa Authorizations Platform, maintaining 99.999% uptime across the global network.</li>
+            <li>Resolved high-priority incidents and participated in on-call rotations for the Visa Authorizations Platform, maintaining 99.999% uptime across the global network.</li>
           </ul>
         </article>
 
@@ -503,6 +499,10 @@
     const headlineEl = document.querySelector('.hero-headline');
     const homeLinks = document.querySelectorAll('a[href="#home"]');
     const paletteClasses = ['palette-nutanix', 'palette-aurora', 'palette-horizon'];
+    const constellationCanvas = document.getElementById('constellation');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let updateConstellationScroll;
+    let refreshConstellationAccentColor;
 
     const applyRandomPalette = () => {
       const nextPalette = paletteClasses[Math.floor(Math.random() * paletteClasses.length)];
@@ -533,6 +533,7 @@
       bodyElement.classList.remove('theme-dark', 'theme-light');
       bodyElement.classList.add(`theme-${theme}`);
       updateThemeToggle(theme);
+      refreshConstellationAccentColor?.();
       if (persist && themeToggle) {
         localStorage.setItem('theme', theme);
       }
@@ -605,6 +606,180 @@
         setHomeHash('smooth');
       });
     });
+
+    const initConstellationBackground = () => {
+      if (!constellationCanvas || prefersReducedMotion.matches || updateConstellationScroll) {
+        return;
+      }
+
+      const ctx = constellationCanvas.getContext('2d');
+      if (!ctx) {
+        return;
+      }
+
+      let canvasWidth = window.innerWidth;
+      let canvasHeight = window.innerHeight;
+      const stars = [];
+      let scrollOffset = 0;
+      let scrollOffsetTarget = 0;
+      let pointerOffsetX = 0;
+      let pointerOffsetY = 0;
+      let pointerTargetX = 0;
+      let pointerTargetY = 0;
+      let accentColor = '#5ca8ff';
+
+      const refreshAccentColor = () => {
+        accentColor = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#5ca8ff';
+      };
+
+      refreshAccentColor();
+      refreshConstellationAccentColor = refreshAccentColor;
+
+      const starCountForViewport = () => {
+        return Math.min(140, Math.max(60, Math.round((canvasWidth * canvasHeight) / 18000)));
+      };
+
+      const createStars = () => {
+        stars.length = 0;
+        const count = starCountForViewport();
+        for (let i = 0; i < count; i += 1) {
+          stars.push({
+            baseX: Math.random() * canvasWidth,
+            baseY: Math.random() * canvasHeight,
+            size: Math.random() * 1.2 + 0.3,
+            drift: Math.random() * 0.6 + 0.2,
+            phase: Math.random() * Math.PI * 2
+          });
+        }
+      };
+
+      const pointerMedia = window.matchMedia('(pointer: fine)');
+
+      const resetPointerParallax = () => {
+        pointerTargetX = 0;
+        pointerTargetY = 0;
+      };
+
+      const handlePointerMove = (event) => {
+        pointerTargetY = ((event.clientY / window.innerHeight) - 0.5) * 80;
+        pointerTargetX = ((event.clientX / window.innerWidth) - 0.5) * 80;
+      };
+
+      if (pointerMedia.matches) {
+        window.addEventListener('pointermove', handlePointerMove);
+        window.addEventListener('pointerleave', resetPointerParallax);
+      }
+
+      window.addEventListener('blur', resetPointerParallax);
+
+      const resizeCanvas = () => {
+        canvasWidth = window.innerWidth;
+        canvasHeight = window.innerHeight;
+        const dpr = window.devicePixelRatio || 1;
+        constellationCanvas.width = canvasWidth * dpr;
+        constellationCanvas.height = canvasHeight * dpr;
+        constellationCanvas.style.width = `${canvasWidth}px`;
+        constellationCanvas.style.height = `${canvasHeight}px`;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
+        createStars();
+      };
+
+      const drawFrame = (timestamp = 0) => {
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        scrollOffset += (scrollOffsetTarget - scrollOffset) * 0.18;
+        pointerOffsetY += (pointerTargetY - pointerOffsetY) * 0.2;
+        pointerOffsetX += (pointerTargetX - pointerOffsetX) * 0.2;
+        const totalParallaxY = scrollOffset + pointerOffsetY;
+        const totalParallaxX = pointerOffsetX;
+        const t = timestamp * 0.0001;
+        const positions = new Array(stars.length);
+
+        ctx.save();
+        ctx.fillStyle = accentColor;
+        for (let i = 0; i < stars.length; i += 1) {
+          const star = stars[i];
+          const driftX = Math.sin(t * (1.4 + star.drift) + star.phase) * 6;
+          const driftY = Math.cos(t * star.drift + star.phase) * 4;
+          let x = star.baseX + driftX + totalParallaxX;
+          let y = star.baseY + driftY + totalParallaxY;
+          y = ((y % canvasHeight) + canvasHeight) % canvasHeight;
+          x = ((x % canvasWidth) + canvasWidth) % canvasWidth;
+          positions[i] = { x, y };
+          ctx.globalAlpha = 0.25 + star.size * 0.45;
+          ctx.beginPath();
+          ctx.arc(x, y, star.size * 1.2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+
+        ctx.save();
+        ctx.strokeStyle = accentColor;
+        ctx.lineWidth = 0.6;
+        for (let i = 0; i < positions.length; i += 1) {
+          for (let j = i + 1; j < positions.length && j < i + 12; j += 1) {
+            const dx = positions[i].x - positions[j].x;
+            const dy = positions[i].y - positions[j].y;
+            const distSq = dx * dx + dy * dy;
+            const maxDist = 140;
+            if (distSq < maxDist * maxDist) {
+              const dist = Math.sqrt(distSq);
+              ctx.globalAlpha = 0.04 + ((maxDist - dist) / maxDist) * 0.12;
+              ctx.beginPath();
+              ctx.moveTo(positions[i].x, positions[i].y);
+              ctx.lineTo(positions[j].x, positions[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        ctx.restore();
+
+        requestAnimationFrame(drawFrame);
+      };
+
+      resizeCanvas();
+      drawFrame();
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        resetPointerParallax();
+      });
+
+      updateConstellationScroll = () => {
+        scrollOffsetTarget = window.scrollY * -0.12;
+      };
+      updateConstellationScroll();
+    };
+
+    initConstellationBackground();
+
+    let scrollGlowTimeout;
+
+    const activateScrollGlow = () => {
+      if (prefersReducedMotion.matches) return;
+      bodyElement.classList.add('scrolling');
+      clearTimeout(scrollGlowTimeout);
+      scrollGlowTimeout = setTimeout(() => {
+        bodyElement.classList.remove('scrolling');
+      }, 900);
+    };
+
+    window.addEventListener('scroll', () => {
+      activateScrollGlow();
+      updateConstellationScroll?.();
+    }, { passive: true });
+
+    const handleReducedMotionChange = event => {
+      if (!event.matches) {
+        initConstellationBackground();
+      }
+    };
+
+    if (prefersReducedMotion.addEventListener) {
+      prefersReducedMotion.addEventListener('change', handleReducedMotionChange);
+    } else if (prefersReducedMotion.addListener) {
+      prefersReducedMotion.addListener(handleReducedMotionChange);
+    }
 
   </script>
 </body>

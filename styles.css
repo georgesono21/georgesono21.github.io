@@ -8,6 +8,8 @@ body.theme-dark {
   --bg: #040814;
   --bg-soft: rgba(255, 255, 255, 0.04);
   --bg-card: rgba(7, 14, 32, 0.85);
+  --card-overlay: rgba(7, 14, 32, 0.12);
+  --cta-overlay: linear-gradient(135deg, rgba(11, 95, 255, 0.22), rgba(92, 168, 255, 0.12));
   --text: #e6f0ff;
   --text-muted: rgba(230, 240, 255, 0.75);
   --accent: #0b5fff;
@@ -24,6 +26,8 @@ body.theme-light {
   --bg: #ffffff;
   --bg-soft: rgba(9, 30, 74, 0.06);
   --bg-card: rgba(255, 255, 255, 0.95);
+  --card-overlay: rgba(255, 255, 255, 0.32);
+  --cta-overlay: linear-gradient(135deg, rgba(11, 95, 255, 0.15), rgba(92, 168, 255, 0.08));
   --text: #0d1f3d;
   --text-muted: rgba(13, 31, 61, 0.72);
   --accent: #0b5fff;
@@ -40,6 +44,8 @@ body.palette-aurora.theme-dark {
   --bg-soft: rgba(255, 255, 255, 0.04);
   --bg-card: rgba(3, 28, 30, 0.82);
   --text: #e4fffb;
+  --card-overlay: rgba(3, 28, 30, 0.12);
+  --cta-overlay: linear-gradient(135deg, rgba(13, 186, 160, 0.24), rgba(10, 122, 155, 0.14));
   --text-muted: rgba(228, 255, 251, 0.78);
   --accent: #15f7d1;
   --accent-soft: rgba(21, 247, 209, 0.25);
@@ -55,6 +61,8 @@ body.palette-aurora.theme-light {
   --bg-soft: rgba(3, 122, 116, 0.08);
   --bg-card: rgba(255, 255, 255, 0.96);
   --text: #073c38;
+  --card-overlay: rgba(255, 255, 255, 0.32);
+  --cta-overlay: linear-gradient(135deg, rgba(13, 186, 160, 0.18), rgba(10, 122, 155, 0.1));
   --text-muted: rgba(7, 60, 56, 0.76);
   --accent: #0dbaa0;
   --accent-soft: rgba(13, 186, 160, 0.18);
@@ -70,6 +78,8 @@ body.palette-horizon.theme-dark {
   --bg-soft: rgba(255, 255, 255, 0.03);
   --bg-card: rgba(32, 10, 28, 0.85);
   --text: #ffefe8;
+  --card-overlay: rgba(32, 10, 28, 0.14);
+  --cta-overlay: linear-gradient(135deg, rgba(242, 109, 31, 0.24), rgba(185, 36, 73, 0.14));
   --text-muted: rgba(255, 239, 232, 0.75);
   --accent: #ff8c42;
   --accent-soft: rgba(255, 140, 66, 0.24);
@@ -85,6 +95,8 @@ body.palette-horizon.theme-light {
   --bg-soft: rgba(246, 125, 74, 0.08);
   --bg-card: rgba(255, 255, 255, 0.95);
   --text: #331310;
+  --card-overlay: rgba(255, 255, 255, 0.32);
+  --cta-overlay: linear-gradient(135deg, rgba(242, 109, 31, 0.15), rgba(185, 36, 73, 0.08));
   --text-muted: rgba(51, 19, 16, 0.72);
   --accent: #f26d1f;
   --accent-soft: rgba(242, 109, 31, 0.18);
@@ -105,15 +117,68 @@ html {
 }
 
 body {
+  --scroll-shift: 0%;
   margin: 0;
   min-height: 100vh;
   background: var(--bg-gradient);
+  background-attachment: fixed;
+  background-position: 50% var(--scroll-shift);
+  background-size: 220% 220%;
   color: var(--text);
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 1.55rem;
   line-height: 1.6;
   letter-spacing: 0.01em;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, background-position 0.8s ease;
+  position: relative;
+}
+
+body.scrolling {
+  --scroll-shift: 12%;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.08), transparent 48%),
+    radial-gradient(circle at 78% 5%, rgba(11, 95, 255, 0.28), transparent 55%),
+    radial-gradient(circle at 50% 80%, rgba(92, 168, 255, 0.15), transparent 58%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  transform: scale(1);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  z-index: 0;
+}
+
+body.scrolling::after {
+  opacity: 0.35;
+  transform: scale(1.05);
+}
+
+#constellation {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.65;
+  mix-blend-mode: screen;
+}
+
+body.theme-light #constellation {
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 0 8px rgba(11, 95, 255, 0.18));
+}
+
+main,
+footer {
+  position: relative;
+  z-index: 1;
 }
 
 main {
@@ -259,8 +324,8 @@ main {
 }
 
 .hero {
-  /* min-height: 100vh; */
-  padding: 5rem 0 8rem;
+  min-height: 100vh;
+  padding: 8rem 0 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -334,6 +399,10 @@ h1 {
   box-shadow: var(--shadow);
 }
 
+body.theme-light .primary {
+  color: #ffffff;
+}
+
 .primary:hover,
 .primary:focus {
   transform: translateY(-1px);
@@ -365,9 +434,11 @@ h1 {
   padding: 1.6rem 2rem;
   border: 1px solid var(--border);
   border-radius: 1.6rem;
-  background: var(--bg-soft);
+  background: var(--card-overlay);
+  backdrop-filter: blur(10px);
   color: var(--text-muted);
   font-size: 1.5rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .hero-highlights span {
@@ -375,6 +446,14 @@ h1 {
   font-size: 2rem;
   font-weight: 600;
   color: var(--accent);
+}
+
+.hero-highlights li:hover,
+.hero-highlights li:focus-within {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.45);
 }
 
 .hero-scroll-cue {
@@ -432,6 +511,35 @@ h1 {
   }
 }
 
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatPulse {
+  0% {
+    transform: translateY(0);
+    box-shadow: var(--shadow);
+  }
+
+  50% {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 30px -18px rgba(11, 95, 255, 0.45);
+  }
+
+  100% {
+    transform: translateY(0);
+    box-shadow: var(--shadow);
+  }
+}
+
 @media (max-width: 600px) {
   .hero-scroll-cue {
     display: flex;
@@ -473,7 +581,8 @@ h1 {
 .project-card {
   padding: 2.8rem 3.2rem;
   border-radius: 2.4rem;
-  background: var(--bg-card);
+  background: var(--card-overlay);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   display: grid;
@@ -594,10 +703,11 @@ h1 {
 .timeline-card {
   padding: 2.8rem 3.2rem;
   border-radius: 2.4rem;
-  background: var(--bg-card);
+  background: var(--card-overlay);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .timeline-card header {
@@ -647,6 +757,13 @@ h1 {
   color: var(--accent);
 }
 
+.timeline-card:hover,
+.timeline-card:focus-within {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.45);
+}
+
 .skills {
   padding: 10rem 0 6rem;
 }
@@ -660,9 +777,17 @@ h1 {
 .skill-card {
   padding: 2.4rem;
   border-radius: 2rem;
-  background: var(--bg-soft);
+  background: var(--card-overlay);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.45);
 }
 
 .skill-card h3 {
@@ -688,12 +813,20 @@ h1 {
 .edu-card {
   padding: 2.8rem 3.2rem;
   border-radius: 2.4rem;
-  background: var(--bg-card);
+  background: var(--card-overlay);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   backdrop-filter: blur(10px);
   display: grid;
   gap: 1.6rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edu-card:hover,
+.edu-card:focus-within {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.45);
 }
 
 .edu-card header {
@@ -748,11 +881,19 @@ h1 {
 .beyond-card {
   padding: 2.6rem;
   border-radius: 2.2rem;
-  background: var(--bg-soft);
+  background: var(--card-overlay);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   display: grid;
   gap: 1.2rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.beyond-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.45);
 }
 
 .beyond-card h3 {
@@ -777,12 +918,21 @@ h1 {
 .cta-card {
   padding: 3.6rem;
   border-radius: 3.2rem;
-  background: linear-gradient(135deg, var(--accent-soft), rgba(255, 255, 255, 0.04));
+  background: var(--cta-overlay);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   text-align: center;
   display: grid;
   gap: 1.6rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  color: var(--text);
+}
+
+.cta-card:hover,
+.cta-card:focus-within {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.45);
 }
 
 .cta-links {
