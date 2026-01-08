@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#040814">
   <title>Yoshinobu Sono · Software Engineer</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' ry='14' fill='%23040B1C'/%3E%3Ctext x='50%' y='52%' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='28' fill='%23FFFFFF' font-weight='600'%3EYS%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -503,13 +504,21 @@
     const constellationCanvas = document.getElementById('constellation');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const mobileWidthQuery = window.matchMedia('(max-width: 768px)');
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     let updateConstellationScroll;
     let refreshConstellationAccentColor;
+
+    const updateThemeColorMeta = () => {
+      if (!themeColorMeta) return;
+      const bgColor = getComputedStyle(bodyElement).getPropertyValue('--bg').trim() || '#040814';
+      themeColorMeta.setAttribute('content', bgColor);
+    };
 
     const applyRandomPalette = () => {
       const nextPalette = paletteClasses[Math.floor(Math.random() * paletteClasses.length)];
       bodyElement.classList.remove(...paletteClasses);
       bodyElement.classList.add(nextPalette);
+      updateThemeColorMeta();
     };
 
     applyRandomPalette();
@@ -535,6 +544,7 @@
       bodyElement.classList.remove('theme-dark', 'theme-light');
       bodyElement.classList.add(`theme-${theme}`);
       updateThemeToggle(theme);
+      updateThemeColorMeta();
       refreshConstellationAccentColor?.();
       if (persist && themeToggle) {
         localStorage.setItem('theme', theme);
