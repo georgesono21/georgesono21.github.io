@@ -7,7 +7,7 @@ body.theme-dark {
   --bg-gradient: radial-gradient(circle at top, #0d1533 0%, #050a1a 50%, #020409 100%);
   --bg: #040814;
   --bg-soft: rgba(255, 255, 255, 0.04);
-  --bg-card: rgba(7, 14, 32, 0.85);
+  --bg-card: rgba(23, 23, 26, 0.85);
   --card-overlay: rgba(7, 14, 32, 0.12);
   --cta-overlay: linear-gradient(135deg, rgba(11, 95, 255, 0.22), rgba(92, 168, 255, 0.12));
   --text: #e6f0ff;
@@ -108,6 +108,8 @@ body.palette-horizon.theme-light {
 
 html {
   scroll-behavior: smooth;
+  overflow: hidden;
+  height: 100%;
 }
 
 *,
@@ -131,6 +133,8 @@ body {
   letter-spacing: 0.01em;
   transition: background 0.3s ease, color 0.3s ease, background-position 0.8s ease;
   position: relative;
+  height: 100%;
+  overflow: auto;
 }
 
 body.scrolling {
