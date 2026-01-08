@@ -59,13 +59,14 @@
         <li><span>2025</span> CruzHacks Education Hacks winner</li>
         <li><span>AI-first</span> learning experiences prototyped</li>
       </ul>
-      <div class="hero-theme-toggle-wrap">
-        <button class="theme-toggle" type="button" aria-label="Activate light mode" aria-pressed="false">Switch to Light Mode</button>
-      </div>
       <div class="hero-scroll-cue" aria-hidden="true">
         <div class="scroll-icon"></div>
         <span>Scroll</span>
       </div>
+      <div class="hero-theme-toggle-wrap">
+        <button class="theme-toggle" type="button" aria-label="Activate light mode" aria-pressed="false">Switch to Light Mode</button>
+      </div>
+
     </section>
 
     <section class="experience" id="experience" aria-labelledby="experience-title">
@@ -501,6 +502,7 @@
     const paletteClasses = ['palette-nutanix', 'palette-aurora', 'palette-horizon'];
     const constellationCanvas = document.getElementById('constellation');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mobileWidthQuery = window.matchMedia('(max-width: 768px)');
     let updateConstellationScroll;
     let refreshConstellationAccentColor;
 
@@ -686,7 +688,7 @@
         pointerTargetX = ((event.clientX / window.innerWidth) - 0.5) * 80;
       };
 
-      if (pointerMedia.matches) {
+      if (pointerMedia.matches && !mobileWidthQuery.matches) {
         window.addEventListener('pointermove', handlePointerMove);
         window.addEventListener('pointerleave', resetPointerParallax);
       }
@@ -761,13 +763,17 @@
       resizeCanvas();
       drawFrame();
 
+      mobileWidthQuery.addEventListener?.('change', () => {
+        resetPointerParallax();
+      });
+
       window.addEventListener('resize', () => {
         resizeCanvas();
         resetPointerParallax();
       });
 
       updateConstellationScroll = () => {
-        scrollOffsetTarget = window.scrollY * -0.12;
+        scrollOffsetTarget = window.scrollY * (mobileWidthQuery.matches ? 0 : -0.12);
       };
       updateConstellationScroll();
     };
