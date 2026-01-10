@@ -108,7 +108,7 @@ body.palette-horizon.theme-light {
 
 html {
   scroll-behavior: smooth;
-  overflow: hidden;
+  overflow-x: hidden;
   height: 100%;
 }
 
@@ -134,7 +134,7 @@ body {
   transition: background 0.3s ease, color 0.3s ease, background-position 0.8s ease;
   position: relative;
   height: 100%;
-  overflow: auto;
+  overflow-x: hidden;
 }
 
 body.scrolling {
