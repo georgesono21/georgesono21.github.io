@@ -626,6 +626,10 @@ body.theme-light .primary {
   padding: 10rem 0 6rem;
 }
 
+.experience .section-heading {
+  max-width: 100%;
+}
+
 .projects {
   padding: 10rem 0 6rem;
 }
