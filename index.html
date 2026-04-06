@@ -3,836 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#040814">
-  <title>Yoshinobu Sono · Software Engineer</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' ry='14' fill='%23040B1C'/%3E%3Ctext x='50%' y='52%' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='28' fill='%23FFFFFF' font-weight='600'%3EYS%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#07111f">
+  <meta
+    name="description"
+    content="Yoshinobu Sono is a software engineer focused on reliable backend systems, platform engineering, and AI-powered learning tools."
+  >
+  <title>Yoshinobu Sono | Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600&family=Sora:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="preload" as="image" href="assets/headshot.jpg">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="theme-dark palette-nutanix">
-  <canvas id="constellation" aria-hidden="true"></canvas>
-  <header class="top-nav" id="top">
-    <div class="nav-inner">
-      <div class="brand">
-        <span class="brand-name">Yoshinobu Sono</span>
-      </div>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation">
-        <span class="sr-only">Toggle navigation</span>
-        <span></span>
+<body>
+  <div class="bg-orb bg-orb-a" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-b" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="matrix-field" id="matrix-field" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="brand-mark">YS</span>
+        <span class="brand-copy">
+          <strong>Yoshinobu Sono</strong>
+          <span>Software Engineer</span>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Toggle navigation"
+      >
         <span></span>
         <span></span>
       </button>
-      <nav id="primary-navigation" aria-label="Primary">
-        <a href="#home">Home</a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
         <a href="#beyond">Beyond Work</a>
         <a href="#contact">Contact</a>
       </nav>
-      <!-- <a class="cta" href="mailto:yoshinobugeorgesono@gmail.com">Get in Touch</a> -->
+
+      <a class="header-cta" href="mailto:yoshinobugeorgesono@gmail.com">Email</a>
     </div>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-      <p class="eyebrow">Software Engineer · Backend &amp; Platforms · Full Stack</p>
-      <h1>
-        <span class="hero-headline" data-headlines='["Designing robust services that keep data flowing and users connected.", "Building backend systems that platform teams trust to scale.", "Shipping thoughtful infra that gives teams confidence."]'>Designing robust services that keep data flowing and users connected.</span>
-      </h1>
-      <div class="hero-intro">
-        <p class="lead">Hello! I’m Yoshinobu (George) Sono—a Taiwanese American engineer raised in Japan and a UC Santa Cruz CS grad. I’m a Member of Technical Staff 1 at Nutanix, focused on AHV control-plane reliability and distributed systems that keep private clouds stable. In my free time I recharge through snowboarding, weightlifting, and cooking.</p>
-        <div class="hero-scroll-cue" aria-hidden="true">
-          <div class="scroll-icon"></div>
-          <span>Scroll</span>
+  <main id="top">
+    <section class="hero section">
+      <div class="hero-copy reveal">
+        <div class="hero-intro-block">
+          <p class="eyebrow">Backend, Platforms, Distributed Systems</p>
+          <h1>
+            I build reliable systems that help teams move faster.
+          </h1>
+          <p class="hero-lead">
+            I'm Yoshinobu (George) Sono, a software engineer in San Jose. I am a member of the AHV Control Plane VM
+            Management team at <a class="inline-link" href="https://www.nutanix.com/" target="_blank" rel="noreferrer">Nutanix</a>
+            and previously worked on payment systems at <a class="inline-link" href="https://www.visa.com/" target="_blank" rel="noreferrer">Visa</a>
+            and product engineering at UCSC's Tech4Good Lab.
+          </p>
         </div>
-        <div class="hero-actions">
-          <a class="secondary" href="#experience">Explore Experience</a>
-          <a class="secondary" href="#projects">Explore Projects</a>
-          <a class="secondary" href="#skills">Explore Skills</a>
-          <a class="secondary" href="#education">Explore Education</a>
-          <a class="secondary" href="#beyond">Explore Beyond Work</a>
-          <a class="primary" href="#contact">Contact</a>
-        </div>
-      </div>
-      <ul class="hero-highlights">
-        <li><span>50k+</span> transactions/second safeguarded</li>
-        <li><span>150B+</span> annual transactions influenced</li>
-        <li><span>2025</span> CruzHacks Education Hacks winner</li>
-        <li><span>AI-first</span> learning experiences prototyped</li>
-      </ul>
-      <div class="hero-theme-toggle-wrap">
-        <button class="theme-toggle" type="button" aria-label="Activate light mode" aria-pressed="false">Switch to Light Mode</button>
       </div>
 
+      <div class="hero-visual reveal">
+        <figure class="portrait-panel card">
+          <div class="portrait-stack">
+            <img src="assets/headshot.jpg" alt="Portrait of Yoshinobu Sono">
+            <div class="portrait-chip portrait-chip-top">San Jose, CA</div>
+            <div class="portrait-chip portrait-chip-bottom">Reliability-first builder</div>
+          </div>
+        </figure>
+      </div>
+
+      <a class="hero-scroll reveal" href="#experience" aria-label="Scroll to experience">
+        <span class="hero-scroll__mouse" aria-hidden="true">
+          <span class="hero-scroll__wheel"></span>
+        </span>
+        <span>Scroll</span>
+      </a>
     </section>
 
-    <section class="experience" id="experience" aria-labelledby="experience-title">
-      <div class="section-heading">
+    <section class="section" id="signal-board">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Approach</p>
+        <h2>The work I do best.</h2>
+        <p>
+          I work best on systems with real constraints, clear users, and room to improve reliability without adding
+          unnecessary complexity.
+        </p>
+      </div>
+      <div class="story-grid" id="story-grid"></div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-heading reveal">
         <p class="eyebrow">Experience</p>
-        <h2 id="experience-title">Professional Journey</h2>
-        <p class="section-lead">Owning critical systems and delivering measurable business impact across payments, edtech, and cloud infrastructure.</p>
+        <h2>Experience across product and platform.</h2>
+        <p>
+          I have worked on user-facing products and core infrastructure. In both cases, the goal is the same: make
+          systems easier to use, easier to debug, and more reliable.
+        </p>
       </div>
 
-      <div class="timeline">
-        <article class="timeline-card">
-          <header>
-            <div>
-              <h3>Nutanix</h3>
-              <p class="role">Member of Technical Staff 1 · AHV Control Plane</p>
-            </div>
-            <div class="meta">
-              <time>Nov 2025 – Present</time>
-              <span>San Jose, CA</span>
-            </div>
-          </header>
-        </article>
-
-        <article class="timeline-card">
-          <header>
-            <div>
-              <h3>Visa Inc.</h3>
-              <p class="role">Software Engineer · Payment Products Development</p>
-            </div>
-            <div class="meta">
-              <time>Jun 2025 – Nov 2025</time>
-              <span>Foster City, CA</span>
-            </div>
-          </header>
-          <ul>
-            <li>Engineer on the Visa Integrated Payments (VIP) team delivering authorization services for 50,000+ transactions every second and 150+ billion annually.</li>
-            <li>Designed an AI-driven automation agent to identify and retire 100+ dormant feature toggles, eliminating configuration drift and reducing technical debt.</li>
-            <li>Strengthened fraud defenses by contributing to Real-Time Attack Mitigation (RAM) with C++ and z/TPF Assembly safeguards that protect millions of daily transactions.</li>
-            <li>Resolved high-priority incidents and participated in on-call rotations for the Visa Authorizations Platform, maintaining 99.999% uptime across the global network.</li>
-          </ul>
-        </article>
-
-        <article class="timeline-card">
-          <header>
-            <div>
-              <h3>Tech4Good Lab @ UCSC</h3>
-              <p class="role">Full Stack Developer</p>
-            </div>
-            <div class="meta">
-              <time>Jul 2024 – Jun 2025</time>
-              <span>Santa Cruz, CA</span>
-            </div>
-          </header>
-          <ul>
-            <li>Built the onboarding experience for Compass, evolving Figma mockups into Angular components and responsive interfaces.</li>
-            <li>Extended Causeway’s learning platform for 100+ active learners with real-time experiences powered by Firebase Firestore.</li>
-            <li>Implemented UI and unit testing across routes, containers, and form flows using Angular Testing Library and Jest-DOM to ensure reliability.</li>
-          </ul>
-        </article>
-
-        <article class="timeline-card">
-          <header>
-            <div>
-              <h3>Nutanix</h3>
-              <p class="role">Software Engineering Capstone</p>
-            </div>
-            <div class="meta">
-              <time>Sep 2024 – Dec 2024</time>
-              <span>San Jose, CA</span>
-            </div>
-          </header>
-          <ul>
-            <li>Architected an ETL pipeline on Kubernetes to ingest 20GB+ of logs per day using Filebeat, Logstash, and OpenSearch for rapid analysis.</li>
-            <li>Delivered a second ETL workflow with MageAI that normalized 100+ hardware JSON files into PostgreSQL for downstream analytics.</li>
-            <li>Optimized psycopg2 SQL queries to reshape 200,000+ data rows into device-level insights while maintaining performance.</li>
-            <li>Authored a custom pandas-based <code>flatten_json</code> utility to convert nested payloads into SQL-ready tabular structures.</li>
-            <li>Unified transformed log and hardware datasets into a Dremio-backed lakehouse, enabling cross-domain observability.</li>
-          </ul>
-        </article>
-
-        <article class="timeline-card">
-          <header>
-            <div>
-              <h3>Footsee</h3>
-              <p class="role">Software Engineering Intern</p>
-            </div>
-            <div class="meta">
-              <time>Jun 2023 – Sep 2023</time>
-              <span>Merced, CA</span>
-            </div>
-          </header>
-          <ul>
-            <li>Implemented profile browsing and editing flows for the iOS app using Swift and Firebase Firestore to streamline user discovery.</li>
-            <li>Crafted reusable lookup tables with Swift generics to accelerate data retrieval for posts, users, and chats while lowering backend load.</li>
-            <li>Built secure RESTful APIs with Firebase Functions and Node.js to orchestrate communication between mobile clients and services.</li>
-          </ul>
-        </article>
+      <div class="experience-shell">
+        <div class="experience-list reveal" id="experience-list" role="tablist" aria-label="Experience timeline"></div>
+        <article class="experience-panel card reveal" id="experience-panel" aria-live="polite"></article>
       </div>
+      <div class="experience-mobile" id="experience-mobile" aria-label="Experience list"></div>
     </section>
 
-    <section class="projects" id="projects" aria-labelledby="projects-title">
-      <div class="section-heading">
+    <section class="section" id="projects">
+      <div class="section-heading reveal">
         <p class="eyebrow">Projects</p>
-        <h2 id="projects-title">Selected Builds</h2>
-        <p class="section-lead">Side projects and hackathon wins that explore how AI can make learning more joyful.</p>
+        <h2>Projects that reflect how I build.</h2>
+        <p>
+          These projects span product work, backend systems, and AI tools, but all of them focus on useful execution.
+        </p>
       </div>
-      <div class="project-grid">
-        <article class="project-card">
-          <header>
-            <div class="project-heading">
-              <h3>StimStudy</h3>
-              <div class="project-links" aria-label="StimStudy links">
-                <a class="icon-link" href="https://github.com/hgupta1703/stimstudy_frontend" target="_blank" rel="noreferrer" aria-label="StimStudy frontend on GitHub">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
-                  </svg>
-                </a>
-                <a class="icon-link" href="https://github.com/georgesono21/stimstudy_backend" target="_blank" rel="noreferrer" aria-label="StimStudy backend on GitHub">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
-                  </svg>
-                </a>
-                <a class="icon-link" href="https://devpost.com/software/stimstudy?_gl=1*xhg7gl*_gcl_au*MTUyOTcxNzg3Mi4xNzY3NjgxODI3*_ga*MjExNDQyNzI1My4xNzY3NjgxODI3*_ga_0YHJK3Y10M*czE3Njc2ODE4MjckbzEkZzAkdDE3Njc2ODE4MjckajYwJGwwJGgw" target="_blank" rel="noreferrer" aria-label="StimStudy on Devpost">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 4.5h12.9a5.6 5.6 0 0 1 0 11.2H8.6V19.5H3zm5.6 8.2h7.3a2.6 2.6 0 0 0 0-5.2H8.6z"/>
-                    <path d="M19.2 9.5H21a.5.5 0 0 1 .5.5v4.3a5.7 5.7 0 0 1-5.6 5.7H9.2a.5.5 0 0 1-.5-.5v-1.8h7.7a3.7 3.7 0 0 0 3.6-3.7z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <p class="project-meta">AI Study Platform · April 2025<br><span class="project-award">2025 CruzHacks Education Hacks Winner</span></p>
-          </header>
-          <p class="project-summary">
-            Built an AI-powered learning platform that transforms study topics into personalized, TikTok-style lessons with animated slides from Google Gemini and celebrity-inspired narration generated through Fish AI voice models.
-          </p>
-          <div class="project-tags" role="list">
-            <span role="listitem">HTML/CSS</span>
-            <span role="listitem">React</span>
-            <span role="listitem">Google Gemini</span>
-            <span role="listitem">Voice AI</span>
-          </div>
-        </article>
 
-        <article class="project-card">
-          <header>
-            <div class="project-heading">
-              <h3>PDFPal</h3>
-              <div class="project-links" aria-label="PDFPal links">
-                <a class="icon-link" href="https://github.com/georgesono21/PDFPal" target="_blank" rel="noreferrer" aria-label="PDFPal on GitHub">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <p class="project-meta">PDF Chatbot · October 2023</p>
-          </header>
-          <p class="project-summary">
-            Designed an AI PDF companion that parses documents, generates embeddings, and stores them in a vector database via LangChain—delivering context-aware answers through a Flask API and a React frontend.
-          </p>
-          <div class="project-tags" role="list">
-            <span role="listitem">JavaScript</span>
-            <span role="listitem">Python</span>
-            <span role="listitem">Flask</span>
-            <span role="listitem">React</span>
-            <span role="listitem">LangChain</span>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <header>
-            <div class="project-heading">
-              <h3>CrateTime</h3>
-              <div class="project-links" aria-label="CrateTime links">
-                <a class="icon-link" href="https://github.com/georgesono21/CrateTime" target="_blank" rel="noreferrer" aria-label="CrateTime on GitHub">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <p class="project-meta">Pet Care Platform · June 2024</p>
-          </header>
-          <p class="project-summary">
-            Developed a family-friendly pet management platform with React and Next.js, backed by MongoDB and AWS S3/IAM for secure profile storage, scheduling, and progress photos.
-          </p>
-          <div class="project-tags" role="list">
-            <span role="listitem">Next.js</span>
-            <span role="listitem">React</span>
-            <span role="listitem">MongoDB</span>
-            <span role="listitem">AWS S3</span>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <header>
-            <div class="project-heading">
-              <h3>TaskManager</h3>
-              <div class="project-links" aria-label="TaskManager links">
-                <a class="icon-link" href="https://github.com/georgesono21/taskmanager" target="_blank" rel="noreferrer" aria-label="TaskManager on GitHub">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352 .5 12 .5Z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <p class="project-meta">Productivity App · May 2024</p>
-          </header>
-          <p class="project-summary">
-            Built an interactive task management experience with Py4Web, Vue.js, and graph-driven analytics that track ownership, support comments, and visualize workload distribution.
-          </p>
-          <div class="project-tags" role="list">
-            <span role="listitem">Py4Web</span>
-            <span role="listitem">Vue.js</span>
-            <span role="listitem">Python</span>
-            <span role="listitem">Data Viz</span>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <header>
-            <div class="project-heading">
-              <h3>AI Pacman Agents</h3>
-              <div class="project-links" aria-label="AI Pacman links">
-                <a class="icon-link" href="https://github.com/georgesono21/ai-pacman" target="_blank" rel="noreferrer" aria-label="AI Pacman on GitHub">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.386 7.868 10.907.575.108.787-.249.787-.554 0-.273-.01-.998-.015-1.958-3.2.695-3.876-1.543-3.876-1.543-.523-1.327-1.277-1.68-1.277-1.68-1.043-.713.079-.699.079-.699 1.152.081 1.759 1.183 1.759 1.183 1.026 1.759 2.691 1.251 3.346.957.105-.743.4-1.251.727-1.54-2.554-.291-5.238-1.277-5.238-5.682 0-1.255.448-2.282 1.182-3.087-.118-.29-.512-1.462.112-3.049 0 0 .964-.309 3.159 1.179a10.93 10.93 0 0 1 2.878-.387c.976.005 1.959.132 2.879.387 2.193-1.488 3.155-1.179 3.155-1.179.626 1.587.233 2.759.114 3.049.737.805 1.18 1.832 1.18 3.087 0 4.416-2.69 5.388-5.255 5.673.413.356.78 1.06.78 2.136 0 1.541-.014 2.783-.014 3.162 0 .307.208.667.793.553C20.21 21.382 23.5 17.082 23.5 12 23.5 5.648 18.352.5 12 .5Z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <p class="project-meta">AI Search &amp; Games · 2023</p>
-          </header>
-          <p class="project-summary">
-            Implemented multi-agent search strategies—including minimax, expectimax, and ghost avoidance—for the UC Berkeley Pacman framework, emphasizing heuristics and performance profiling.
-          </p>
-          <div class="project-tags" role="list">
-            <span role="listitem">Python</span>
-            <span role="listitem">AI</span>
-            <span role="listitem">Adversarial Search</span>
-            <span role="listitem">Heuristics</span>
-          </div>
-        </article>
-
+      <div class="project-shell">
+        <article class="project-focus card reveal" id="project-focus" aria-live="polite"></article>
+        <div class="project-grid" id="project-grid"></div>
       </div>
+      <div class="project-mobile" id="project-mobile" aria-label="Project list"></div>
     </section>
 
-    <section class="skills" id="skills" aria-labelledby="skills-title">
-      <div class="section-heading">
+    <section class="section" id="skills">
+      <div class="section-heading reveal">
         <p class="eyebrow">Skills</p>
-        <h2 id="skills-title">Toolbox & Focus Areas</h2>
-        <p class="section-lead">Delivering dependable systems through a blend of backend rigor, modern frontend craft, and data fluency.</p>
+        <h2>Tools I use most often.</h2>
+        <p>
+          My center of gravity is backend and platform engineering, with full-stack experience when the work requires it.
+        </p>
       </div>
-      <div class="skill-grid">
-        <div class="skill-card">
-          <h3>Languages</h3>
-          <ul>
-            <li>Python</li>
-            <li>Golang</li>
-            <li>TypeScript / JavaScript</li>
-            <li>C / C++</li>
-            <li>Bash</li>
-            <li>Swift</li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <h3>Backend &amp; Data</h3>
-          <ul>
-            <li>Node.js</li>
-            <li>Express</li>
-            <li>Flask</li>
-            <li>gRPC</li>
-            <li>PostgreSQL</li>
-            <li>MySQL</li>
-            <li>MongoDB</li>
-            <li>Firebase Firestore</li>
-            <li>Firebase Functions</li>
-            <li>OpenSearch</li>
-            <li>Logstash</li>
-            <li>Filebeat</li>
-            <li>Dremio</li>
-            <li>MageAI</li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <h3>Frontend &amp; App</h3>
-          <ul>
-            <li>Next.js</li>
-            <li>React</li>
-            <li>Angular</li>
-            <li>Flutter</li>
-            <li>NumPy</li>
-            <li>Pandas</li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <h3>Cloud &amp; Ops</h3>
-          <ul>
-            <li>AWS (IAM, S3)</li>
-            <li>Kubernetes</li>
-            <li>Google Cloud</li>
-            <li>MongoDB Atlas</li>
-            <li>Docker</li>
-            <li>Linux</li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <h3>Tools &amp; Collaboration</h3>
-          <ul>
-            <li>Git</li>
-            <li>Jira</li>
-            <li>Notion</li>
-            <li>Postman</li>
-            <li>Insomnia</li>
-            <li>OpenAI API</li>
-            <li>LangChain</li>
-          </ul>
-        </div>
-      </div>
+
+      <div class="skill-groups" id="skill-groups"></div>
     </section>
 
-    <section class="education" id="education" aria-labelledby="education-title">
-      <div class="section-heading">
-        <p class="eyebrow">Education</p>
-        <h2 id="education-title">Academic Foundations</h2>
-        <p class="section-lead">Graduated Magna Cum Laude while balancing research, mentoring, and full-stack development work.</p>
-      </div>
-      <article class="edu-card">
-        <header>
-          <div>
-            <h3>University of California, Santa Cruz</h3>
-            <p class="role">B.S. Computer Science · <span class="gpa">GPA 3.93 / 4.00</span></p>
-          </div>
-          <div class="meta">
-            <time>Jun 2025</time>
-            <span>Santa Cruz, CA</span>
-          </div>
-        </header>
-        <p class="edu-note">Coursework across operating systems, database systems, computer architecture, algorithms, and applied AI/ML.</p>
-      </article>
-    </section>
-
-    <section class="beyond" id="beyond" aria-labelledby="beyond-title">
-      <div class="section-heading">
+    <section class="section" id="beyond">
+      <div class="section-heading reveal">
         <p class="eyebrow">Beyond Work</p>
-        <h2 id="beyond-title">What Fuels Me</h2>
-        <p class="section-lead">Blending storytelling, community, and creative tech to keep learning fun.</p>
+        <h2>Outside work.</h2>
+        <p>
+          Outside work I spend most of my time snowboarding, lifting, cooking, or building small side projects.
+        </p>
       </div>
 
-      <div class="beyond-groups">
-        <section class="beyond-group" aria-labelledby="beyond-values-title">
-          <h3 id="beyond-values-title" class="beyond-subtitle">Values &amp; Interests</h3>
-          <div class="beyond-grid">
-            <article class="beyond-card">
-              <h3>Curiosity &amp; Tinkering</h3>
-              <p>I unwind by modding keyboards, wiring smart lights, and finding playful automations for daily rituals—it keeps my curiosity sharp and my space joyful.</p>
-            </article>
-            <article class="beyond-card">
-              <h3>Intentional Communication</h3>
-              <p>Weekly journaling and long-form catch-up notes help me stay grounded, celebrate friends, and show up with the same care I hope to receive.</p>
-            </article>
-            <article class="beyond-card">
-              <h3>Community Projects</h3>
-              <p>I co-host weekend build nights where friends cook, brainstorm, and ship tiny creative tools together; the shared learning matters more than the output.</p>
-            </article>
-            <article class="beyond-card">
-              <h3>Storytelling &amp; Creative Media</h3>
-              <p>I remix pop culture into zines, slide decks, and short videos for friends prepping for exams—if people laugh and remember something, it’s a win.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="beyond-group" aria-labelledby="beyond-hobbies-title">
-          <h3 id="beyond-hobbies-title" class="beyond-subtitle">Hobbies</h3>
-          <div class="beyond-grid">
-            <article class="beyond-card">
-              <h3>Gymming</h3>
-              <p>Strength training is my moving meditation—chasing a new PR keeps me focused and reminds me that steady effort wins over quick wins.</p>
-            </article>
-            <article class="beyond-card">
-              <h3>Snowboarding</h3>
-              <p>Fresh powder days in Tahoe are my favorite reset; cruising through tree runs with friends never fails to refill the energy tank.</p>
-            </article>
-            <article class="beyond-card">
-              <h3>Skateboarding</h3>
-              <p>Skating downtown San Jose keeps things playful—falling, retrying, and finally sticking a trick feels like the best kind of progress.</p>
-            </article>
-            <article class="beyond-card">
-              <h3>Cooking</h3>
-              <p>Weekend kitchen experiments are how I celebrate family stories; every new recipe gets a twist inspired by the people I love.</p>
-            </article>
-          </div>
-        </section>
-      </div>
+      <div class="interest-grid" id="interest-grid"></div>
     </section>
 
-    <section class="cta-section">
-      <div class="cta-card">
-        <h2>Let’s build systems that scale responsibly.</h2>
-        <p>From mission-critical payments to modern learning platforms, I bring a reliability-first mindset and a collaborative spirit to every project.</p>
-        <div class="cta-links">
-          <a class="primary" href="mailto:yoshinobugeorgesono@gmail.com">Email me</a>
+    <section class="section contact-section" id="contact">
+      <article class="contact-card card reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Happy to connect on backend, platform, and product engineering.</h2>
+        <p>
+          If you work on reliable systems, internal platforms, or technically deep product work, feel free to reach out.
+        </p>
+        <div class="contact-actions">
+          <a class="button button-primary" href="mailto:yoshinobugeorgesono@gmail.com">Email Me</a>
+          <a class="button button-secondary" href="https://www.linkedin.com/in/yoshinobu-sono/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="button button-secondary" href="https://github.com/georgesono21" target="_blank" rel="noreferrer">GitHub</a>
         </div>
-      </div>
+      </article>
     </section>
   </main>
 
-    <footer id="contact">
-      <div class="footer-content">
-        <div>
-          <p class="brand-foot">Yoshinobu Sono</p>
-          <p>San Jose, California</p>
-        </div>
-        <div class="footer-links">
-          <a href="mailto:yoshinobugeorgesono@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/yoshinobu-sono/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://github.com/georgesono21" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="#home">Back to top</a>
-        </div>
-      </div>
-      <p class="footer-note">© <span id="year"></span> Yoshinobu Sono. All rights reserved.</p>
-    </footer>
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Yoshinobu Sono</p>
+    <a href="#top">Back to top</a>
+  </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const bodyElement = document.body;
-    const themeToggle = document.querySelector('.theme-toggle');
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('primary-navigation');
-    const headlineEl = document.querySelector('.hero-headline');
-    const homeLinks = document.querySelectorAll('a[href="#home"]');
-    const paletteClasses = ['palette-nutanix', 'palette-aurora', 'palette-horizon'];
-    const constellationCanvas = document.getElementById('constellation');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const mobileWidthQuery = window.matchMedia('(max-width: 768px)');
-    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-    let updateConstellationScroll;
-    let refreshConstellationAccentColor;
-
-    const updateThemeColorMeta = () => {
-      if (!themeColorMeta) return;
-      const bgColor = getComputedStyle(bodyElement).getPropertyValue('--bg').trim() || '#040814';
-      themeColorMeta.setAttribute('content', bgColor);
-    };
-
-    const applyRandomPalette = () => {
-      const nextPalette = paletteClasses[Math.floor(Math.random() * paletteClasses.length)];
-      bodyElement.classList.remove(...paletteClasses);
-      bodyElement.classList.add(nextPalette);
-      updateThemeColorMeta();
-    };
-
-    applyRandomPalette();
-
-    const setHomeHash = (behavior = 'auto') => {
-      history.replaceState(null, '', '/#home');
-      window.scrollTo({ top: 0, behavior });
-    };
-
-    if (!location.hash || location.hash === '#home') {
-      setHomeHash('auto');
-    }
-
-    const updateThemeToggle = (theme) => {
-      if (!themeToggle) return;
-      const isLight = theme === 'light';
-      themeToggle.setAttribute('aria-label', isLight ? 'Activate dark mode' : 'Activate light mode');
-      themeToggle.setAttribute('aria-pressed', String(isLight));
-      themeToggle.textContent = isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode';
-    };
-
-    const applyTheme = (theme, persist = false) => {
-      bodyElement.classList.remove('theme-dark', 'theme-light');
-      bodyElement.classList.add(`theme-${theme}`);
-      updateThemeToggle(theme);
-      updateThemeColorMeta();
-      refreshConstellationAccentColor?.();
-      if (persist && themeToggle) {
-        localStorage.setItem('theme', theme);
-      }
-    };
-
-    const storedTheme = localStorage.getItem('theme');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const initialTheme = storedTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
-    applyTheme(initialTheme, Boolean(storedTheme));
-
-    if (!storedTheme) {
-      const handleSchemeChange = event => {
-        applyTheme(event.matches ? 'dark' : 'light');
-      };
-
-      if (prefersDarkScheme.addEventListener) {
-        prefersDarkScheme.addEventListener('change', handleSchemeChange);
-      } else if (prefersDarkScheme.addListener) {
-        prefersDarkScheme.addListener(handleSchemeChange);
-      }
-    }
-
-    themeToggle?.addEventListener('click', () => {
-      const nextTheme = bodyElement.classList.contains('theme-dark') ? 'light' : 'dark';
-      applyTheme(nextTheme, true);
-    });
-
-    if (headlineEl) {
-      try {
-        const headlines = JSON.parse(headlineEl.dataset.headlines);
-        let headlineIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingDelay = 85;
-        const pauseDelay = 1800;
-
-        const typeLoop = () => {
-          const current = headlines[headlineIndex] || '';
-
-          if (!isDeleting) {
-            charIndex = Math.min(charIndex + 1, current.length);
-            headlineEl.textContent = current.slice(0, charIndex);
-
-            if (charIndex === current.length) {
-              isDeleting = true;
-              setTimeout(typeLoop, pauseDelay);
-              return;
-            }
-          } else {
-            charIndex = Math.max(charIndex - 1, 0);
-            headlineEl.textContent = current.slice(0, charIndex);
-
-            if (charIndex === 0) {
-              isDeleting = false;
-              headlineIndex = (headlineIndex + 1) % headlines.length;
-            }
-          }
-
-          const nextDelay = isDeleting ? typingDelay * 0.6 : typingDelay;
-          setTimeout(typeLoop, nextDelay);
-        };
-
-        typeLoop();
-      } catch (error) {
-        console.error('Failed to initialize typewriter headlines', error);
-      }
-    }
-
-    if (navToggle && nav) {
-      navToggle.addEventListener('click', () => {
-        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-        navToggle.setAttribute('aria-expanded', String(!expanded));
-        nav.classList.toggle('open');
-        navToggle.classList.toggle('open');
-      });
-
-      nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (nav.classList.contains('open')) {
-            nav.classList.remove('open');
-            navToggle.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-    }
-
-    homeLinks.forEach(link => {
-      link.addEventListener('click', event => {
-        event.preventDefault();
-        setHomeHash('smooth');
-      });
-    });
-
-    const initConstellationBackground = () => {
-      if (!constellationCanvas || prefersReducedMotion.matches || mobileWidthQuery.matches || updateConstellationScroll) {
-        if (constellationCanvas && mobileWidthQuery.matches) {
-          constellationCanvas.style.display = 'none';
-        }
-        return;
-      }
-      constellationCanvas.style.removeProperty('display');
-
-      const ctx = constellationCanvas.getContext('2d');
-      if (!ctx) {
-        return;
-      }
-
-      let canvasWidth = window.innerWidth;
-      let canvasHeight = window.innerHeight;
-      const stars = [];
-      let scrollOffset = 0;
-      let scrollOffsetTarget = 0;
-      let pointerOffsetX = 0;
-      let pointerOffsetY = 0;
-      let pointerTargetX = 0;
-      let pointerTargetY = 0;
-      let accentColor = '#5ca8ff';
-
-      const refreshAccentColor = () => {
-        accentColor = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#5ca8ff';
-      };
-
-      refreshAccentColor();
-      refreshConstellationAccentColor = refreshAccentColor;
-
-      const starCountForViewport = () => {
-        return Math.min(140, Math.max(60, Math.round((canvasWidth * canvasHeight) / 18000)));
-      };
-
-      const createStars = () => {
-        stars.length = 0;
-        const count = starCountForViewport();
-        for (let i = 0; i < count; i += 1) {
-          stars.push({
-            baseX: Math.random() * canvasWidth,
-            baseY: Math.random() * canvasHeight,
-            size: Math.random() * 1.2 + 0.3,
-            drift: Math.random() * 0.6 + 0.2,
-            phase: Math.random() * Math.PI * 2
-          });
-        }
-      };
-
-      const pointerMedia = window.matchMedia('(pointer: fine)');
-
-      const resetPointerParallax = () => {
-        pointerTargetX = 0;
-        pointerTargetY = 0;
-      };
-
-      const handlePointerMove = (event) => {
-        pointerTargetY = ((event.clientY / window.innerHeight) - 0.5) * 80;
-        pointerTargetX = ((event.clientX / window.innerWidth) - 0.5) * 80;
-      };
-
-      if (pointerMedia.matches && !mobileWidthQuery.matches) {
-        window.addEventListener('pointermove', handlePointerMove);
-        window.addEventListener('pointerleave', resetPointerParallax);
-      }
-
-      window.addEventListener('blur', resetPointerParallax);
-
-      const resizeCanvas = () => {
-        canvasWidth = window.innerWidth;
-        canvasHeight = window.innerHeight;
-        const dpr = window.devicePixelRatio || 1;
-        constellationCanvas.width = canvasWidth * dpr;
-        constellationCanvas.height = canvasHeight * dpr;
-        constellationCanvas.style.width = `${canvasWidth}px`;
-        constellationCanvas.style.height = `${canvasHeight}px`;
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.scale(dpr, dpr);
-        createStars();
-      };
-
-      const drawFrame = (timestamp = 0) => {
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-        scrollOffset += (scrollOffsetTarget - scrollOffset) * 0.18;
-        pointerOffsetY += (pointerTargetY - pointerOffsetY) * 0.2;
-        pointerOffsetX += (pointerTargetX - pointerOffsetX) * 0.2;
-        const totalParallaxY = scrollOffset + pointerOffsetY;
-        const totalParallaxX = pointerOffsetX;
-        const t = timestamp * 0.0001;
-        const positions = new Array(stars.length);
-
-        ctx.save();
-        ctx.fillStyle = accentColor;
-        for (let i = 0; i < stars.length; i += 1) {
-          const star = stars[i];
-          const driftX = Math.sin(t * (1.4 + star.drift) + star.phase) * 6;
-          const driftY = Math.cos(t * star.drift + star.phase) * 4;
-          let x = star.baseX + driftX + totalParallaxX;
-          let y = star.baseY + driftY + totalParallaxY;
-          y = ((y % canvasHeight) + canvasHeight) % canvasHeight;
-          x = ((x % canvasWidth) + canvasWidth) % canvasWidth;
-          positions[i] = { x, y };
-          ctx.globalAlpha = 0.25 + star.size * 0.45;
-          ctx.beginPath();
-          ctx.arc(x, y, star.size * 1.2, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.restore();
-
-        ctx.save();
-        ctx.strokeStyle = accentColor;
-        ctx.lineWidth = 0.6;
-        for (let i = 0; i < positions.length; i += 1) {
-          for (let j = i + 1; j < positions.length && j < i + 12; j += 1) {
-            const dx = positions[i].x - positions[j].x;
-            const dy = positions[i].y - positions[j].y;
-            const distSq = dx * dx + dy * dy;
-            const maxDist = 140;
-            if (distSq < maxDist * maxDist) {
-              const dist = Math.sqrt(distSq);
-              ctx.globalAlpha = 0.04 + ((maxDist - dist) / maxDist) * 0.12;
-              ctx.beginPath();
-              ctx.moveTo(positions[i].x, positions[i].y);
-              ctx.lineTo(positions[j].x, positions[j].y);
-              ctx.stroke();
-            }
-          }
-        }
-        ctx.restore();
-
-        requestAnimationFrame(drawFrame);
-      };
-
-      resizeCanvas();
-      drawFrame();
-
-      window.addEventListener('resize', () => {
-        resizeCanvas();
-        resetPointerParallax();
-      });
-
-      updateConstellationScroll = () => {
-        scrollOffsetTarget = mobileWidthQuery.matches ? 0 : window.scrollY * -0.12;
-      };
-      updateConstellationScroll();
-    };
-
-    initConstellationBackground();
-
-    let scrollGlowTimeout;
-
-    const activateScrollGlow = () => {
-      if (prefersReducedMotion.matches || mobileWidthQuery.matches) return;
-      bodyElement.classList.add('scrolling');
-      clearTimeout(scrollGlowTimeout);
-      scrollGlowTimeout = setTimeout(() => {
-        bodyElement.classList.remove('scrolling');
-      }, 900);
-    };
-
-    window.addEventListener('scroll', () => {
-      activateScrollGlow();
-      updateConstellationScroll?.();
-    }, { passive: true });
-
-    const handleReducedMotionChange = event => {
-      if (!event.matches) {
-        initConstellationBackground();
-      }
-    };
-
-    const handleViewportChange = event => {
-      if (event.matches) {
-        updateConstellationScroll = undefined;
-        constellationCanvas?.style.setProperty('display', 'none');
-      } else {
-        initConstellationBackground();
-      }
-    };
-
-    if (prefersReducedMotion.addEventListener) {
-      prefersReducedMotion.addEventListener('change', handleReducedMotionChange);
-    } else if (prefersReducedMotion.addListener) {
-      prefersReducedMotion.addListener(handleReducedMotionChange);
-    }
-
-    if (mobileWidthQuery.addEventListener) {
-      mobileWidthQuery.addEventListener('change', handleViewportChange);
-    } else if (mobileWidthQuery.addListener) {
-      mobileWidthQuery.addListener(handleViewportChange);
-    }
-
-  </script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
