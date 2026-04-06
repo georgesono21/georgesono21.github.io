@@ -594,19 +594,6 @@ main section[id] {
   letter-spacing: 0.14em;
 }
 
-.story-lines {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3rem;
-  padding: 0 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--muted);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 1.1rem;
-}
-
 .story-copy {
   margin: 1.2rem 0 0;
   color: var(--muted);

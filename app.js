@@ -360,7 +360,6 @@ function renderStoryGrid() {
         <article class="story-card card reveal" data-story-index="${index}">
           <div class="story-meta">
             <span class="story-tag">${card.tag}</span>
-            <span class="story-lines" data-story-lines>Measuring...</span>
           </div>
           <h3>${card.title}</h3>
           <p class="story-copy" data-story-copy>${card.copy}</p>
@@ -760,14 +759,12 @@ function buildStoryMeasurements() {
   const cards = [...storyGrid.querySelectorAll(".story-card")];
   storyPretextEntries = cards.map((card) => {
     const copyEl = card.querySelector("[data-story-copy]");
-    const badgeEl = card.querySelector("[data-story-lines]");
     const style = window.getComputedStyle(copyEl);
     const font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
 
     return {
       card,
       copyEl,
-      badgeEl,
       handle: prepareWithSegments(copyEl.textContent.trim(), font)
     };
   });
@@ -782,7 +779,6 @@ function measureStoryCards() {
     const lineHeight = Number.parseFloat(style.lineHeight) || Number.parseFloat(style.fontSize) * 1.65;
     const result = layoutWithLines(entry.handle, width, lineHeight);
     const density = result.lineCount >= 6 ? "dense" : "open";
-    entry.badgeEl.textContent = `${String(result.lines.length).padStart(2, "0")} lines`;
     entry.card.dataset.density = density;
     entry.copyEl.style.minHeight = `${Math.ceil(result.height)}px`;
   });
@@ -804,11 +800,7 @@ function initStoryMeasurements() {
         { passive: true }
       );
     })
-    .catch(() => {
-      storyGrid.querySelectorAll("[data-story-lines]").forEach((badge) => {
-        badge.textContent = "Ready";
-      });
-    });
+    .catch(() => {});
 }
 
 function initMatrixField() {
