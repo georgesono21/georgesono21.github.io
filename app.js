@@ -584,7 +584,7 @@ function ensureMatrixGlyphPrepared(font) {
   return matrixState.glyphPrepared;
 }
 
-function buildMatrixField() {
+function buildMatrixField(force = false) {
   if (!matrixField) return;
 
   const width = matrixField.clientWidth;
@@ -593,7 +593,7 @@ function buildMatrixField() {
 
   const widthDelta = Math.abs(matrixState.width - width);
   const heightDelta = Math.abs(matrixState.height - height);
-  if (matrixState.rows.length > 0 && widthDelta < 1 && heightDelta < 1) return;
+  if (!force && matrixState.rows.length > 0 && widthDelta < 1 && heightDelta < 1) return;
 
   const style = window.getComputedStyle(matrixField);
   const font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
@@ -836,6 +836,9 @@ function initStoryMeasurements() {
 
 function initMatrixField() {
   if (!matrixField) return;
+  if (window.matchMedia("(hover: none), (pointer: coarse)").matches) {
+    return;
+  }
 
   const readyFonts = document.fonts?.ready ?? Promise.resolve();
   const queueMatrixBuild = () => {
@@ -845,24 +848,26 @@ function initMatrixField() {
     }, 140);
   };
 
+  buildMatrixField(true);
+  window.addEventListener(
+    "resize",
+    queueMatrixBuild,
+    { passive: true }
+  );
+  window.addEventListener(
+    "load",
+    () => {
+      buildMatrixField(true);
+    },
+    { passive: true, once: true }
+  );
+
   readyFonts
     .then(() => {
-      buildMatrixField();
-      window.addEventListener(
-        "resize",
-        queueMatrixBuild,
-        { passive: true }
-      );
-      window.addEventListener(
-        "load",
-        () => {
-          buildMatrixField();
-        },
-        { passive: true, once: true }
-      );
+      buildMatrixField(true);
     })
     .catch(() => {
-      buildMatrixField();
+      buildMatrixField(true);
     });
 }
 
