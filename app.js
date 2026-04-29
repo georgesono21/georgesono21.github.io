@@ -322,7 +322,9 @@ function experienceContentHtml(item) {
   `;
 }
 
-function projectContentHtml(project) {
+function projectContentHtml(project, options = {}) {
+  const { showAwardPill = true } = options;
+
   return `
     <div class="project-focus__header">
       <div class="project-focus__identity">
@@ -333,7 +335,7 @@ function projectContentHtml(project) {
           <p class="role-line">${project.date}</p>
         </div>
       </div>
-      ${project.award ? `<span class="pill">${project.award}</span>` : ""}
+      ${showAwardPill && project.award ? `<span class="pill">${project.award}</span>` : ""}
     </div>
     <p class="project-focus__summary">${project.summary}</p>
     <ul class="panel-list">
@@ -490,7 +492,7 @@ function renderProjectMobile() {
             ${project.award ? `<div class="project-award">${project.award}</div>` : ""}
           </summary>
           <div class="mobile-card__body">
-            ${projectContentHtml(project)}
+            ${projectContentHtml(project, { showAwardPill: false })}
           </div>
         </details>
       `
