@@ -269,6 +269,9 @@ const matrixState = {
   sourceLength: 0,
   glyphPrepared: null,
   glyphPreparedFont: "",
+  pointerActive: false,
+  pointerClientX: -10000,
+  pointerClientY: -10000,
   pointerX: -10000,
   pointerY: -10000,
   radius: 96,
@@ -731,27 +734,46 @@ function initPointerGlow() {
   const syncPointerGlow = (clientX, clientY) => {
     const x = (clientX / window.innerWidth) * 100;
     const y = (clientY / window.innerHeight) * 100;
-    const pageY = clientY + window.scrollY;
 
+    matrixState.pointerActive = true;
+    matrixState.pointerClientX = clientX;
+    matrixState.pointerClientY = clientY;
     document.documentElement.style.setProperty("--pointer-x", `${x}%`);
     document.documentElement.style.setProperty("--pointer-y", `${y}%`);
     document.documentElement.style.setProperty("--pointer-x-px", `${clientX}px`);
     document.documentElement.style.setProperty("--pointer-y-px", `${clientY}px`);
-    queueMatrixWrap(clientX, pageY);
+    queueMatrixWrap(clientX, clientY + window.scrollY);
+  };
+
+  const clearPointerGlow = () => {
+    matrixState.pointerActive = false;
+    matrixState.pointerClientX = -10000;
+    matrixState.pointerClientY = -10000;
+    document.documentElement.style.setProperty("--pointer-x-px", "-20rem");
+    document.documentElement.style.setProperty("--pointer-y-px", "-20rem");
+    queueMatrixWrap(-10000, -10000);
   };
 
   window.addEventListener(
     "pointermove",
     (event) => {
+      if (event.pointerType !== "mouse") return;
       syncPointerGlow(event.clientX, event.clientY);
     },
     { passive: true }
   );
 
+  document.documentElement.addEventListener(
+    "mouseleave",
+    clearPointerGlow,
+    { passive: true }
+  );
+
   window.addEventListener(
-    "pointerleave",
+    "scroll",
     () => {
-      queueMatrixWrap(-10000, -10000);
+      if (!matrixState.pointerActive) return;
+      queueMatrixWrap(matrixState.pointerClientX, matrixState.pointerClientY + window.scrollY);
     },
     { passive: true }
   );
