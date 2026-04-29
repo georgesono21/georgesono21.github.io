@@ -83,7 +83,7 @@ body::before {
   display: grid;
   align-content: start;
   overflow: hidden;
-  padding: 0 2rem;
+  padding: 0;
   opacity: 0.42;
   font-family: "IBM Plex Mono", monospace;
   font-size: clamp(1rem, 0.6vw, 1.2rem);
@@ -1174,6 +1174,12 @@ main section[id] {
   .button,
   .header-cta {
     width: 100%;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  body::before {
+    display: none;
   }
 }
 

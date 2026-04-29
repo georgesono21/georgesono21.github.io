@@ -731,6 +731,13 @@ function initRevealObserver() {
 }
 
 function initPointerGlow() {
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.documentElement.style.setProperty("--pointer-x-px", "-20rem");
+    document.documentElement.style.setProperty("--pointer-y-px", "-20rem");
+    queueMatrixWrap(-10000, -10000);
+    return;
+  }
+
   const syncPointerGlow = (clientX, clientY) => {
     const x = (clientX / window.innerWidth) * 100;
     const y = (clientY / window.innerHeight) * 100;
